@@ -5,7 +5,8 @@ import NumberInput from './NumberInput/NumberInput';
 import SubmitBtn from './SubmitBtn/SubmitBtn';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/actions';
+import { addContact } from '../../redux/slices/contactsSlice';
+import { setFilter } from '../../redux/slices/filterSlice';
 import { getContacts } from '../../redux/selectors';
 
 const Phonebook = () => {
@@ -26,7 +27,7 @@ const Phonebook = () => {
 
     checkExistence
       ? alert(`"${name}" is already in contacts`)
-      : dispatch(addContact({ name, number }));
+      : dispatch(addContact({ name, number })) && dispatch(setFilter(''));
 
     form.reset();
   };
